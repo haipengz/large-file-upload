@@ -20,19 +20,19 @@ module.exports = appInfo => {
 
   config.security = {
     csrf: {
-      enable: false
+      enable: false,
     },
-    domainWhiteList: ['*']
+    domainWhiteList: [ '*' ],
   };
   config.cors = {
-    origin: 'http://192.168.101.69:8080',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+    origin: 'http://172.16.110.210:8080',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   };
 
   config.cluster = {
     listen: {
       port: 7001, // 端口
-      hostname: '192.168.101.69', // 服务器ip
+      hostname: '172.16.110.210', // 服务器ip
     },
   };
 
@@ -49,7 +49,7 @@ module.exports = appInfo => {
       '/': {
         connectionMiddleware: [],
         packetMiddleware: [],
-      }
+      },
     },
   };
 

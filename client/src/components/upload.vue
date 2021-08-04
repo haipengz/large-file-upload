@@ -92,7 +92,8 @@ import SparkMD5 from "spark-md5";
 import Promise from "bluebird";
 import io from "socket.io-client";
 import axios from "axios";
-const baseUrl = "http://192.168.101.69:7001";
+// const baseUrl = "http://172.16.110.210:7001";
+const baseUrl = "http://172.16.110.210:3001/upload";
 axios.defaults.baseURL = baseUrl;
 const blobSlice =
   File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
@@ -351,7 +352,7 @@ export default {
           chunkReqArr.push(chunkReqItem);
         }
       }
-      if (chunkReqArr.length <= 10) {
+      if (chunkReqArr.length <= 4) {
         Promise.all(chunkReqArr)
           .then(() => {
             that.updateTips("success", "分片上传完成，正在请求合并分片");

@@ -1,18 +1,19 @@
+/* eslint-disable strict */
 const path = require('path');
 const fs = require('fs');
 const { Readable } = require('stream');
 const multistream = require('multistream');
 
-const mkdirsSync = (dirname) => {
-    if (fs.existsSync(dirname)) {
-        return true;
-    } else {
-        if (mkdirsSync(path.dirname(dirname))) {
-            fs.mkdirSync(dirname);
-            return true;
-        }
-    }
-}
+const mkdirsSync = dirname => {
+  if (fs.existsSync(dirname)) {
+    return true;
+  }
+  if (mkdirsSync(path.dirname(dirname))) {
+    fs.mkdirSync(dirname);
+    return true;
+  }
+
+};
 
 // const mergeFiles = (inputPathList, outputPath, chunkSize) => {
 //     const fd = fs.openSync(outputPath, 'w+');
@@ -39,14 +40,14 @@ const mkdirsSync = (dirname) => {
 //     });
 // }
 
-const bufferToStream = (binary) => {
-    const readableInstanceStream = new Readable({
-      read() {
-        this.push(binary);
-        this.push(null);
-      }
-    });
-    return readableInstanceStream;
-}
+const bufferToStream = binary => {
+  const readableInstanceStream = new Readable({
+    read() {
+      this.push(binary);
+      this.push(null);
+    },
+  });
+  return readableInstanceStream;
+};
 
-module.exports = {mkdirsSync, bufferToStream}
+module.exports = { mkdirsSync, bufferToStream };
